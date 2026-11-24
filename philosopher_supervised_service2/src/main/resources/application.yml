@@ -1,0 +1,26 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: philosopher-supervised-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+philosopher:
+  id: ${PHILOSOPHER_ID:}              # vide = "philosophe-<index>"
+  index: ${PHILOSOPHER_INDEX:0}       # numéro du philosophe, de 0 à count-1
+  count: 5                            # nombre de philosophes = nombre de fourchettes
+  topic: philosopher-events
+  think-min-ms: 500
+  think-max-ms: 1000
+  eat-min-ms: 1000
+  eat-max-ms: 2000
+  between-forks-ms: 1000               # pause entre la 1re et la 2e demande de fourchette
+  poll-ms: 100                        # délai avant de redemander une fourchette occupée
+
+supervisor:
+  url: ${SUPERVISOR_URL:http://localhost:8095}

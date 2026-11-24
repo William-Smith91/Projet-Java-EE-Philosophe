@@ -1,0 +1,12 @@
+server:
+  port: 8095
+
+spring:
+  application:
+    name: supervisor-service
+
+supervisor:
+  fork-count: 5
+  # Délai (ms) entre "vérifier que la fourchette est libre" et "la marquer prise".
+  # 0 = comportement normal. Mettre 50 pour rendre la course entre philosophes visible.
+  check-to-act-delay-ms: 0
