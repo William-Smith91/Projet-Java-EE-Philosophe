@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="3">
+    <title>Historique</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; }
+        th, td { border-bottom: 1px solid #ddd; padding: .4rem 1rem; text-align: left; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+<p><a th:href="@{/}">&larr; Tableau de bord</a></p>
+<h1 th:text="${id}">philosophe</h1>
+<p>Historique reconstruit par horloge logique (du plus récent au plus ancien).</p>
+<table>
+    <thead><tr><th>Horloge logique</th><th>Événement</th><th>Heure</th></tr></thead>
+    <tbody>
+    <tr th:each="e : ${events}">
+        <td th:text="${e.logicalClock()}">1</td>
+        <td th:text="${e.type()}">HUNGRY</td>
+        <td th:text="${e.time()}">12:00:00</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

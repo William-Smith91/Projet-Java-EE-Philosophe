@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="3">
+    <title th:text="${title}">Philosophes</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; }
+        th, td { border-bottom: 1px solid #ddd; padding: .5rem 1rem; text-align: left; }
+        th { background: #f4f4f4; }
+        .THINKING { color: #0d47a1; }
+        .HUNGRY { color: #b26a00; font-weight: bold; }
+        .EATING { color: #14532d; font-weight: bold; }
+    </style>
+</head>
+<body>
+<h1 th:text="${title}">Philosophes</h1>
+<p th:if="${rows.isEmpty()}">Aucun événement reçu pour l'instant.</p>
+<table th:unless="${rows.isEmpty()}">
+    <thead>
+    <tr><th>Philosophe</th><th>État</th><th>Horloge logique</th><th>Repas</th><th>Dernier événement</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${rows}">
+        <td><a th:href="@{/philosophers/{id}(id=${row.id()})}" th:text="${row.id()}">id</a></td>
+        <td th:text="${row.state()}" th:class="${row.state()}">THINKING</td>
+        <td th:text="${row.lastClock()}">0</td>
+        <td th:text="${row.meals()}">0</td>
+        <td th:text="${row.lastEventAt()}">-</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
